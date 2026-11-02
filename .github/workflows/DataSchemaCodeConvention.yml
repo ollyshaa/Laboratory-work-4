@@ -1,0 +1,17 @@
+name: Data Schema Code Convention
+on:
+  push:
+    branches:
+      - main
+jobs:
+  SQLLinter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install sqlfluff
+        run: pip install sqlfluff
+      - name: Lint DataSchema.sql
+        run: sqlfluff lint $GITHUB_WORKSPACE/DataSchema.sql --dialect sqlite
+      - name: Report success
+        run: echo "Перевірку норм кодування пройдено"
