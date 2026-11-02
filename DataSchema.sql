@@ -8,7 +8,8 @@ CREATE TABLE exercises (
     CONSTRAINT exercises_name_uq UNIQUE (exercise_name),
     CONSTRAINT exercises_name_ck CHECK (
         LENGTH(exercise_name) BETWEEN 3 AND 50
-        AND exercise_name REGEXP '^[A-Za-zА-Яа-яІіЇїЄєҐґ]+([- ][A-Za-zА-Яа-яІіЇїЄєҐґ]+)*$'
+        AND exercise_name REGEXP
+        '^[A-Za-zА-Яа-яІіЇїЄєҐґ]+([- ][A-Za-zА-Яа-яІіЇїЄєҐґ]+)*$'
     ),
     CONSTRAINT exercises_level_ck CHECK (
         difficulty_level REGEXP '^(початковий|середній)$'
