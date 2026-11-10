@@ -1,0 +1,20 @@
+# https://github.com/marketplace/actions/super-linter
+name: Program Code Convention
+on:
+  push:
+    branches-ignore: [master, main]
+jobs:
+  ProgramCodeLinter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code in Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Lint Program Code
+        uses: super-linter/super-linter@v7
+        env:
+          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_JAVA: true
+          FILTER_REGEX_INCLUDE: .*\.java
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
